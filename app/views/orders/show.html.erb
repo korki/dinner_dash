@@ -1,6 +1,8 @@
-<h1>Your order</h1>
+<h1>Order #<%= @order.id %></h1>
 
 <p>Status: <%= @order.status %></p>
+
+<%= render partial: 'admin/orders/user_details' %>
 
 <p>Items:</p>
 <ul>

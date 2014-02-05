@@ -1,8 +1,12 @@
 DinnerDash::Application.routes.draw do
 
   resources :orders
+  get 'admin' => 'orders#admin_index'
   get 'admin/orders' => 'orders#admin_index'
-  
+  get 'admin/order/:id/:status' => 'orders#admin_status_change', as: :status_change
+  get 'admin/orders/:status' => 'orders#admin_status_filter', as: :status_filter
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
