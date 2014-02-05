@@ -1,0 +1,20 @@
+<h1>Your order</h1>
+
+<p>Status: <%= @order.status %></p>
+
+<p>Items:</p>
+<ul>
+  <% 
+    @order.order_items.each do |order_item| 
+      item = order_item.item
+  %>
+    <li>
+      <%= item.name %>, 
+      ordered: <%= order_item.quantity %> (per item:<%= item.price %>), 
+      subtotal: <%= item.price*order_item.quantity %>
+    </li>
+  <% end %>
+</ul>
+
+<h3>Total: <%= @order.order_total %></h3>
+<p>Order placed on: <%= @order.created_at %></p>
