@@ -1,0 +1,12 @@
+
+<h2>Dinner Dash</h2>
+<ul id="items">
+  <% @items.each do |item| %>
+    <li>
+      <%= link_to item.name, item_path(item), class: 'item_name', id: "item_#{item.id}" %>
+    </li>
+  <% end %>
+</ul>
+
+<br />
+
