@@ -6,7 +6,10 @@ DinnerDash::Application.routes.draw do
   get 'admin/order/:id/:status' => 'orders#admin_status_change', as: :status_change
   get 'admin/orders/:status' => 'orders#admin_status_filter', as: :status_filter
 
-
+  resources :users
+  resources :user_sessions, only: [ :new, :create, :destroy ]
+  get 'login'  => 'user_sessions#new'
+  get 'logout' => 'user_sessions#destroy'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

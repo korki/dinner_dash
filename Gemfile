@@ -32,7 +32,6 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-
 gem 'paperclip'
 gem 'sorcery'
 
