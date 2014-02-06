@@ -8,12 +8,17 @@
 
 categories = Category.create([{name: 'Starters'}, {name: 'Main Meals'}, {name: 'Drinks'}])
 items = Item.create([
-  {name: 'Stella', description: 'Beer', price: 5, category_id: categories.last.id},
-  {name: 'Carslberg', description: 'Beer', price: 3, category_id: categories.last.id},
-  {name: 'Orange juice', description: 'Soft', price: 7, category_id: categories.last.id},
-  {name: 'Garlic bread', description: 'Very good', price: 3, category_id: categories.first.id},
-  {name: 'Crisps', description: 'Some old stuff', price: 7, category_id: categories.first.id},
+  {name: 'Stella', description: 'Beer', price: 5},
+  {name: 'Carslberg', description: 'Beer', price: 3},
+  {name: 'Orange juice', description: 'Soft', price: 7},
+  {name: 'Garlic bread', description: 'Very good', price: 3},
+  {name: 'Crisps', description: 'Some old stuff', price: 7},
 ])
+ItemCategory.create([
+  {category_id: 1, item_id: 2},
+  {category_id: 2, item_id: 1},
+  {category_id: 2, item_id: 3},
+  ])
 
 user = User.create(
   full_name: 'Franklin Webber', 

@@ -1,0 +1,13 @@
+<h1>All Categories</h1>
+
+<ul id="categories">
+  <% @categories.each do |category| %>
+    <li>
+      <%= link_to category.name %>
+      <%= link_to "edit", edit_category_path(category.id) %>
+      <%= link_to "delete", category_path(@category), method: :delete, data: {confirm: "Really delete this category?"} %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Create a New Category", new_category_path, class: "new_category" %>

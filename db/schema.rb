@@ -30,12 +30,16 @@ ActiveRecord::Schema.define(version: 20140205124154) do
     t.string "name"
   end
 
+  create_table "item_categories", force: true do |t|
+    t.integer "item_id"
+    t.integer "category_id"
+  end
+
   create_table "items", force: true do |t|
     t.string  "name"
     t.text    "description"
     t.integer "price"
     t.text    "photo"
-    t.integer "category_id"
   end
 
   create_table "order_items", force: true do |t|

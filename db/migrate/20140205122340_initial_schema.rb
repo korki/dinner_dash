@@ -4,12 +4,16 @@ class InitialSchema < ActiveRecord::Migration
       t.string :name
     end  
 
+    create_table :item_categories do |t|
+      t.integer :item_id
+      t.integer :category_id
+    end
+
     create_table :items do |t|
       t.string :name, unique: true
       t.text :description
       t.integer :price
       t.text :photo
-      t.integer :category_id
     end
 
     create_table :order_items do |t|

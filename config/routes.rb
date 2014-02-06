@@ -1,4 +1,14 @@
 DinnerDash::Application.routes.draw do
+
+  get 'categories' => 'categories#categories', as: :category
+  get 'categories/new' => 'categories#new',      as: :new_category
+  get 'categories/edit/:id' => 'categories#edit' , as: :edit_category
+  post 'categories' =>'categories#create'
+
+  #get 'categories/delete/:id' => 'categories#destroy' as: :delete_category
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
