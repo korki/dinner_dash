@@ -9,11 +9,16 @@ DinnerDash::Application.routes.draw do
 
 
 
+  resources :users
+  resources :user_sessions, only: [ :new, :create, :destroy ]
+  get 'login'  => 'user_sessions#new'
+  get 'logout' => 'user_sessions#destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'examples#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
