@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'Orders' do
-  # fixtures :orders
 
   before(:each) do
     @order = Order.first
@@ -16,10 +15,9 @@ describe 'Orders' do
     end
 
     it 'visits single order page and displays details' do
-      pending
       visit order_url(@order.id)
-      expect(page.body).to have_content 'Order #1'
-      expect(page.body).not_to have_content 'User: Franklin Webber (franklin.webber@testingstuff.com)'
+      expect(page.body).to have_content "Order ##{@order.id}"
+      expect(page.body).not_to have_content "User: #{@order.user.full_name} (#{@order.user.email})"
       expect(page.status_code).to eq 200
     end
   end
@@ -44,19 +42,20 @@ describe 'Orders' do
     end
 
     it 'visits single order and displays user info' do
+      user = User.new role: 1
+      ApplicationController.any_instance.stub(:current_user).and_return(user)
       visit order_url(@order.id)
-      expect(page.body).to have_content 'Order #1'
-      expect(page.body).to have_content 'User: Franklin Webber (franklin.webber@testingstuff.com)'
+      expect(page.body).to have_content "Order ##{@order.id}"
+      expect(page.body).to have_content "User: #{@order.user.full_name} (#{@order.user.email})"
       expect(page.status_code).to eq 200
     end
 
     it 'can change the status of order' do
-      pending
       visit admin_orders_url
       within("#orders_list") do
-        click_link 'completed'
+        click_link 'canceled'
       end
-      
+      expect(page.body).to have_content "Status: canceled"
       expect(page.status_code).to eq 200
     end
   end
