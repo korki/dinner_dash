@@ -51,6 +51,7 @@ describe 'Orders' do
     end
 
     it 'can change the status of order' do
+      pending
       visit admin_orders_url
       within("#orders_list") do
         click_link 'completed'
