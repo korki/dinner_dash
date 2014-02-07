@@ -8,4 +8,9 @@ class Order < ActiveRecord::Base
     return ['canceled', 'paid'] if self.status == 'ordered'
   end
 
+
+  def changeable?
+    return true if self.status == 'paid' || self.status == 'pending'
+  end
+
 end

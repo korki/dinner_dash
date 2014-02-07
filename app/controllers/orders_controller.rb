@@ -9,11 +9,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
-  def admin_index
-    @orders = Order.all
-    orders_counts
-    render 'admin/orders/index.html.erb'
-  end
+ 
 
   def admin_status_filter
     @orders = Order.where('status = ?', params[:status])
@@ -27,6 +23,7 @@ class OrdersController < ApplicationController
     order.save!
     redirect_to order_path(order)
   end
+
 
   private 
 
