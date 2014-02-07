@@ -34,6 +34,7 @@ end
 
 gem 'paperclip'
 gem 'sorcery'
+gem 'bootstrap-sass'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
@@ -50,4 +51,5 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.14.0'
   gem 'capybara'
   gem 'pry'
+  gem 'rails_layout'
 end
