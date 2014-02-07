@@ -7,4 +7,5 @@ class Order < ActiveRecord::Base
     return ['canceled', 'completed'] if self.status == 'paid'
     return ['canceled', 'paid'] if self.status == 'ordered'
   end
+
 end
