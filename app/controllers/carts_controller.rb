@@ -23,7 +23,6 @@ class CartsController < ApplicationController
   def remove
     item = @cart.cart_items.find_by(item_id: params[:item_id])
     item.destroy
-    binding.pry
     redirect_to cart_path
   end
 
