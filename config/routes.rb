@@ -1,11 +1,17 @@
 DinnerDash::Application.routes.draw do
 
-  get 'categories' => 'categories#categories', as: :category
-  get 'categories/new' => 'categories#new',      as: :new_category
-  get 'categories/edit/:id' => 'categories#edit' , as: :edit_category
-  post 'categories' =>'categories#create'
+ 
 
-  #get 'categories/delete/:id' => 'categories#destroy' as: :delete_category
+  get 'categories/' => 'categories#index',                            as: :categories
+  get 'categories/:id' => 'categories#show',                          as: :items_category
+  get 'admin/categories/' => 'admin/categories#index',                as: :admin_categories
+  get 'admin/categories/new' => 'admin/categories#new',               as: :new_category
+  get 'admin/categories/:id'      => 'admin/categories#show',         as: :category
+  get 'admin/categories/:id/edit' => 'admin/categories#edit' ,        as: :edit_category
+  put 'admin/categories/:id'      => 'admin/categories#update'
+  post 'admin/categories' =>'admin/categories#create'
+  delete 'admin/categories/:id/delete' => 'admin/categories#destroy', as: :delete_category
+
 
 
 
