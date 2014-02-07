@@ -7,7 +7,7 @@ describe 'Product Management Module' do
       Item.create(name: 'Burger', description: 'Chicken Burger', price: '18', quantity: '5') 
     end
 
-    it 'Go to main items page' do
+    it 'It display all the items' do
       visit items_url
       expect(page.status_code).to eq 200
     end
@@ -40,20 +40,40 @@ describe 'Product Management Module' do
     end
   end
 
-
-   describe 'Product Admin Module' do
+  describe 'Product Admin Module' do
 
     before(:each) do
       @item = Item.first
     end
 
     it 'Only Admin can create/edit/update items details' do
+      user = User.new role: 1
+      ApplicationController.any_instance.stub(:current_user).and_return(user)
+      visit item_url(@item.id)
+      expect(page.body).to have_content "#{@item.name}"
+      expect(page.body).to have_content "#{@item.description}"
+      expect(page.body).to have_content "#{@item.price}"
+      expect(page.status_code).to eq 200
     end
 
-    it 'It has edit item add new item page' do
+    it 'Admin can edit/delete items' do
+      user = User.new role: 1
+      ApplicationController.any_instance.stub(:current_user).and_return(user)
+      visit item_url(@item.id)
+      expect(page.body).to have_content "Edit Product"
+      expect(page.body).to have_content "Delete"
+      expect(page.status_code).to eq 200
     end
+
+    it 'Only Admin can create items' do
+      user = User.new role: 1
+      ApplicationController.any_instance.stub(:current_user).and_return(user)
+      visit items_url()
+      expect(page.body).to have_content "Create a New Product"
+      expect(page.status_code).to eq 200
+    end
+
   end
-
 
 end
 

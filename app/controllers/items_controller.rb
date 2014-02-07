@@ -1,6 +1,14 @@
 class ItemsController < ApplicationController
 
+  before_filter :admin_user, only: [:new, :edit, :create, :destroy]
+
   include ItemsHelper
+
+  def admin_user
+    if logged_in? && current_user.admin?  
+      false
+    end
+  end
 
   def index
     @items = Item.all
