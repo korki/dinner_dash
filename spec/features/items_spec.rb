@@ -69,7 +69,7 @@ describe 'Product Management Module' do
       user = User.new role: 1
       ApplicationController.any_instance.stub(:current_user).and_return(user)
       visit items_url()
-      expect(page.body).to have_content "Create a New Product"
+      expect(page.body).to have_content "Create New Item"
       expect(page.status_code).to eq 200
     end
 

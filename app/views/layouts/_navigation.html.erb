@@ -14,6 +14,13 @@
       <ul class="nav navbar-nav">
         <%= render 'layouts/navigation_links' %>
       </ul>
+      <div class="nav navbar-nav navbar-right">
+        <% if logged_in? %>
+          <%= link_to "Logged in as #{current_user.email} (Log out)", logout_path %>
+        <% else %>
+          <%= link_to 'Logged out (Log in)', login_path %>
+        <% end %>
+      </div>
     </div>
   </div>
 </nav>
