@@ -4,7 +4,8 @@ require 'cart/add_item'
 describe 'Cart::AddItem' do
   it 'adds the item, with a quantity of 1, when the item is not in the cart' do
     cart = Cart.new
-    item = Item.new(:id => 4)
+    cart.save!
+    item = Item.first
     # put in lib/cart/add_item.rb
     Cart::AddItem.call cart, item, 1
     #puts cart.items.inspect
@@ -15,6 +16,7 @@ describe 'Cart::AddItem' do
 
   it 'increases the quantity when the item is already in the cart' do
     cart = Cart.new
+    cart.save!
     item = Item.new(:id => 3)
     # put in lib/cart/add_item.rb
     Cart::AddItem.call cart, item, 1

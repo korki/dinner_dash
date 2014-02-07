@@ -10,11 +10,21 @@
   </head>
   <body>
     <header>
-      <%= render 'layouts/navigation' %>
+      <%= render 'layouts/navigation' %>      
+      <p class="flash">
+        <%= flash.notice %>
+      </p>
     </header>
     <main role="main">
        <%= render 'layouts/messages' %>
        <%= yield %>
+       <h6>
+          <% if logged_in? %>
+            <%= "Logged in as #{current_user.email}" %>
+          <% else %>
+              Logged out
+          <% end %>
+        </h6>
     </main>
   </body>
 </html>
