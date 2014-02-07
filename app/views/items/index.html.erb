@@ -18,6 +18,8 @@
 </div>
 <div class="clear"></div>
 <br /><br />
-<%= link_to "Create a New Product", new_item_path, class: "new_item" %>
-<br />
+
+<% if logged_in? && current_user.admin? %>
+  <%= link_to "Create a New Product", new_item_path, class: "new_item" %>
+<% end %>
 

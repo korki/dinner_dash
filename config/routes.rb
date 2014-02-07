@@ -15,7 +15,9 @@ DinnerDash::Application.routes.draw do
   post 'cart/item/remove/:item_id' => 'carts#remove', as: :remove_item_cart
 
   resources :orders
-  resources :items
+  resources :items  
+  get 'admin/items' => 'items#admin_index'
+
   resources :users
   resources :user_sessions, only: [ :new, :create, :destroy ]
   get 'login'  => 'user_sessions#new'
