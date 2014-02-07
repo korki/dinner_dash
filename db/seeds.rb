@@ -38,3 +38,14 @@ OrderItem.create([
   {order_id: 1, item_id: 1, quantity: 3},
   {order_id: 2, item_id: 4, quantity: 1},
 ])
+
+Cart.create([
+  {user_id: 1},
+  {user_id: 2},
+])
+
+CartItem.create([
+  {cart_id: 1, item_id: 2, quantity: 21},
+  {cart_id: 1, item_id: 1, quantity: 32},
+  {cart_id: 2, item_id: 4, quantity: 10},
+])

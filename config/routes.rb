@@ -10,6 +10,9 @@ DinnerDash::Application.routes.draw do
   post 'categories' =>'admin/categories#create'
   delete 'admin/categories/:id/delete' => 'admin/categories#destroy', as: :delete_category
 
+  get 'cart/' => 'carts#show' , as: :cart
+  post 'cart/item/add/:item_id' => 'carts#add', as: :add_item_cart
+  post 'cart/item/remove/:item_id' => 'carts#remove', as: :remove_item_cart
 
   resources :orders
   resources :items
