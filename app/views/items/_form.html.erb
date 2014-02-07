@@ -1,0 +1,26 @@
+<%= form_for(@item, html: {multipart: true}) do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </p>
+  <p>
+    <%= f.label :quantity %>
+    <%= f.text_field :quantity %>
+  </p>
+  <p>
+    <%= f.label :image, "Attach an photo" %><br />
+    <%= f.file_field :image %>
+  </p>
+  </p>
+  <%= f.submit %>
+<% end %>
+<br />
+<%= link_to "Cancel", items_path, class: "cancel_item" %>

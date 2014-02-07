@@ -1,0 +1,20 @@
+<%= link_to "Dinner Dash ", items_path %>
+
+<h3><%= @item.name %></h3>
+<br />
+<p>
+  <% if @item.image.exists? %>
+      <%= image_tag @item.image.url(:medium) %><br/>
+  <% end %>
+</p>
+
+<p><span>Price : </span><%= @item.price %></p>
+<p><span>Quantity : </span><%= @item.quantity %></p>
+<p><span>Description : </span><%= @item.description %></p>
+
+<p>
+  <%= link_to "Edit Product information", edit_item_path, class: "new_item" %> &nbsp;
+  <%= link_to "delete", item_path(@item), method: :delete, data: {confirm: "Really delete the article?"}%>
+</p>
+<br />
+<%= link_to "<< Back to Dinner Dash ", items_path %>
