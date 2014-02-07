@@ -34,7 +34,7 @@ end
 
 gem 'paperclip'
 gem 'sorcery'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.1.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
