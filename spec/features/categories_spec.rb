@@ -27,4 +27,9 @@ describe Category do
     expect(page.status_code).to eq 200
   end
 
+  it "Adds a category" do
+
+    
+  end
+
 end

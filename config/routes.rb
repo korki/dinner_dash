@@ -9,7 +9,7 @@ DinnerDash::Application.routes.draw do
   get 'admin/categories/:id'      => 'admin/categories#show',         as: :category
   get 'admin/categories/:id/edit' => 'admin/categories#edit' ,        as: :edit_category
   put 'admin/categories/:id'      => 'admin/categories#update'
-  post 'admin/categories' =>'admin/categories#create'
+  post 'categories' =>'admin/categories#create'
   delete 'admin/categories/:id/delete' => 'admin/categories#destroy', as: :delete_category
 
 
