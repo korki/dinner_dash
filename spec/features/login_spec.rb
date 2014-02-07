@@ -16,12 +16,21 @@ describe 'check user' do
   end
 
   it 'login' do
-     visit login_url
+    visit login_url
+    fill_in 'email', :with => user.email
+    fill_in 'password', :with => 'password'
+    click_on 'Login'
+    page.should have_content('Logged in as t@t.com')  
+  end
 
-     fill_in 'email', :with => user.email
-     fill_in 'password', :with => 'password'
-     click_on 'Login'
-     page.should have_content('Logged in as t@t.com')  
+  it 'check user role' do 
+    visit login_url
+    fill_in 'email', :with => user.email
+    fill_in 'password', :with => 'password'
+    click_on 'Login'
+    expect(user.admin?).to eq false
+    user.role = 1
+    expect(user.admin?).to eq true
   end
 
   it 'logout' do
@@ -33,8 +42,5 @@ describe 'check user' do
     visit logout_url 
     page.should have_content('Logged out')  
   end
-
-
-
 end
  

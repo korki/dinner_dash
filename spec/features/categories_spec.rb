@@ -7,29 +7,22 @@ describe Category do
    })  
   }
 
-  let(:test_cat2) { Category.new({
-    id: '2',
-    name: 'Main Meals',
-   })  
-  }
-
-  it 'it has an id and a name' do
-
-    expect(test_cat1.id).to eq 1
-    expect(test_cat1.name).to eq "Starters"
-
-    expect(test_cat2.id).to eq 2
-    expect(test_cat2.name).to eq "Main Meals"
-  end
-
-  it 'Go to main Category page' do
+  it 'displays main categories list and single category' do
+    cat = Category.first
     visit categories_path
     expect(page.status_code).to eq 200
+    expect(page.body).to have_content cat.name
+    visit items_category_path cat.id
+    expect(page.status_code).to eq 200
+    expect(page.body).to have_content cat.name
   end
 
-  it "Adds a category" do
-
-    
+  it "adds a new category" do
+    visit new_category_path
+    fill_in 'category[name]', :with => 'test_category'
+    click_on 'Create Category'
+    expect(page.status_code).to eq 200
+    expect(page.body).to have_content 'test_category'
   end
 
 end

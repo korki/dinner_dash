@@ -7,8 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+<p class="flash">
+  <%= flash.notice %>
+</p>
+<div id="container" style="">
+    <div id="content">
+      <%= yield %>
+    </div>
+</div>
 
 <h6>
   <% if logged_in? %>
