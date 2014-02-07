@@ -1,5 +1,7 @@
 
 require 'cart/add_item'
+require 'order/add_item'
+require 'order/create_from_cart'
 
 class CartsController < ApplicationController
   before_action :set_cart
@@ -26,11 +28,16 @@ class CartsController < ApplicationController
     redirect_to cart_path
   end
 
+  def checkout 
+    @cart = Cart.find(1)
+    @order = Order::CreateFromCart.call @cart
+    @cart.destroy
+    redirect_to orders_path
+  end
+
   def set_cart 
     @cart = Cart.find(1)
     puts @cart.cart_items.to_a.inspect
-
-
   end
 
 end

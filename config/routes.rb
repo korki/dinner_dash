@@ -13,6 +13,7 @@ DinnerDash::Application.routes.draw do
   get 'cart/' => 'carts#show' , as: :cart
   post 'cart/item/add/:item_id' => 'carts#add', as: :add_item_cart
   post 'cart/item/remove/:item_id' => 'carts#remove', as: :remove_item_cart
+  post 'cart/checkout/' => 'carts#checkout', as: :checkout
 
   resources :orders
   resources :items
