@@ -1,0 +1,10 @@
+  <h1>Edit Order #<%= @order.id %></h1>
+  <p>Status: <%= @order.status %></p>
+  <%= render partial: 'admin/orders/user_details' %>
+  <% if logged_in? && current_user.admin? && @order.changeable? %>
+   <%= render partial: 'admin/orders/edit_form' %> 
+  <% else %>
+   <%= render partial: 'admin/orders/order_details' %>
+  <% end %>
+  <h3>Total: <%= @order.order_total %></h3>
+  <p>Order placed on: <%= @order.created_at %></p>

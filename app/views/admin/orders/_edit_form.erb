@@ -1,0 +1,34 @@
+<%= form_tag(admin_order_edit_path, method: "post")%>
+  <% 
+    @order.order_items.each do |order_item| 
+    item = order_item.item
+  %>
+
+   <%= hidden_field_tag 'order_item_id', order_item.id %>
+    <div class="field">
+      <%= label_tag(item.name, "Item:") %>
+      <%= item.name %>
+    </div>
+    <div class="field">
+      <%= label_tag(order_item.quantity, "Quantity:") %>
+      <%= text_field_tag("quantity_#{order_item.id}",order_item.quantity) %>
+    </div>
+    <div class="field">
+      price: <%= item.price %><br />
+      subtotal: <%= item.price * order_item.quantity %>
+    </div>
+    <div class="field">
+      <%= link_to "delete", remove_item_path(order_item.id), method: :delete %>
+    </div>
+   
+<% end %>
+ <%= submit_tag("Update") %>
+</form>
+
+<br/>
+ <% if !@order.statuses.nil? %>
+  Mark as: 
+  <% @order.statuses.each do |status| %>
+    <%= link_to status, status_change_path(@order.id, status) %>
+  <% end %>
+ <% end %>
