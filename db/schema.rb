@@ -34,12 +34,13 @@ ActiveRecord::Schema.define(version: 20140206214757) do
     t.integer "item_id"
     t.integer "category_id"
   end
-
+  
   create_table "items", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "price"
     t.text     "photo"
+-   t.integer  "category_id"
     t.integer  "quantity",           default: 0
     t.string   "image_file_name"
     t.string   "image_content_type"
