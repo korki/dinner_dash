@@ -1,0 +1,23 @@
+<h2>Dinner Dash</h2>
+<div>
+  <div id="items">
+    <% @items.each do |item| %>
+      <div class="product">
+        <p>
+          <% if item.image.exists? %>
+                <%= link_to image_tag(item.image.url(:thumb)) , item_path(item) %>
+
+          <% end %>
+        </p>
+        <div><%= link_to item.name, item_path(item), class: 'item_name', id: "item_#{item.id}" %></div>
+        <div>£<%= item.price %>.00</div>
+        <div><%= item.quantity %> in stock</div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="clear"></div>
+<br /><br />
+<%= link_to "Create a New Product", new_item_path, class: "new_item" %>
+<br />
+

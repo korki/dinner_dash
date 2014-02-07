@@ -1,0 +1,28 @@
+#container {
+  width: 75%;
+  margin: 0 auto;
+  background: #CDAD00;
+  padding: 20px 40px;
+  border: solid 1px black;
+  margin-top: 20px; 
+  border:1px solid #fff;
+  border-radius:15px;
+  }
+#content{
+  height:1200px;
+}
+
+.clear{
+  clear:both
+}
+.product{
+  float:left; 
+  padding:25px; 
+  width:160px; 
+  height:160px;
+  margin:10px; 
+  border:1px solid #fff;
+  border-radius:15px;
+}
+
+

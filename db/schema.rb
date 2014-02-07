@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206115450) do
+ActiveRecord::Schema.define(version: 20140206214757) do
 
   create_table "cart_items", force: true do |t|
     t.integer "item_id"
@@ -31,11 +31,16 @@ ActiveRecord::Schema.define(version: 20140206115450) do
   end
 
   create_table "items", force: true do |t|
-    t.string  "name"
-    t.text    "description"
-    t.integer "price"
-    t.text    "photo"
-    t.integer "category_id"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "price"
+    t.text     "photo"
+    t.integer  "category_id"
+    t.integer  "quantity",           default: 0
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "order_items", force: true do |t|

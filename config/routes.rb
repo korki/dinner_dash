@@ -6,6 +6,7 @@ DinnerDash::Application.routes.draw do
   get 'admin/order/:id/:status' => 'orders#admin_status_change', as: :status_change
   get 'admin/orders/:status' => 'orders#admin_status_filter', as: :status_filter
 
+  resources :items
   resources :users
   resources :user_sessions, only: [ :new, :create, :destroy ]
   get 'login'  => 'user_sessions#new'
