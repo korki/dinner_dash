@@ -1,0 +1,30 @@
+<h1>Listing carts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantity</th>
+      <th>Id</th>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cart_view.each do |item| %>
+      <tr>
+        <td>
+          <input value="<%= item[:quantity] %>" name="item">
+          <%= button_to "+", add_item_cart_path(item[:id]) %>
+        </td>
+        <td><%= item[:id] %></td>
+        <td><%= item[:name] %></td> 
+        <td><%= button_to "Remove", remove_item_cart_path(item[:id]) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

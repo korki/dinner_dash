@@ -5,11 +5,14 @@ DinnerDash::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'examples#index'
 
-  get 'cart/' => 'carts#show'
-  get 'cart/test' => 'carts#index'
+  get 'cart/' => 'carts#show' , as: :cart
+  post 'cart/item/add/:item_id' => 'carts#add', as: :add_item_cart
+  post 'cart/item/remove/:item_id' => 'carts#remove', as: :remove_item_cart
+  
+  #get 'cart/test' => 'carts#index'
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  #   get 'prodsucts/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
