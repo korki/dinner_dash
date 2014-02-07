@@ -38,9 +38,22 @@ describe 'Product Management Module' do
       visit item_url(@item.id)
       expect(page.status_code).to eq 200
     end
-
-
   end
+
+
+   describe 'Product Admin Module' do
+
+    before(:each) do
+      @item = Item.first
+    end
+
+    it 'Only Admin can create/edit/update items details' do
+    end
+
+    it 'It has edit item add new item page' do
+    end
+  end
+
 
 end
 
