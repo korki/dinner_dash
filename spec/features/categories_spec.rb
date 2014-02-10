@@ -18,6 +18,8 @@ describe Category do
   end
 
   it "adds a new category" do
+    user = User.new role: 1
+    ApplicationController.any_instance.stub(:current_user).and_return(user)    
     visit new_category_path
     fill_in 'category[name]', :with => 'test_category'
     click_on 'Create Category'

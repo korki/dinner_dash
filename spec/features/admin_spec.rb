@@ -4,12 +4,13 @@ describe 'Admin panel' do
 
   before(:each) do
     @order = Order.first
+    user = User.new role: 1
+    ApplicationController.any_instance.stub(:current_user).and_return(user)
   end
 
    let :user do
       User.create(full_name: 'tony', display_name: 'tonyk', email: 't@t.com', password:'password',  password_confirmation:'password', role:'1') 
    end
-
 
   describe 'Admin Order pages' do
     it 'visits dashboard and shows orders results' do
@@ -31,9 +32,7 @@ describe 'Admin panel' do
     end
 
     it 'visits single order and displays user info' do
-      user = User.new role: 1
-      ApplicationController.any_instance.stub(:current_user).and_return(user)
-      visit order_url(@order.id)
+      visit admin_order_url(@order.id)
       expect(page.body).to have_content "Order ##{@order.id}"
       expect(page.body).to have_content "User: #{@order.user.full_name} (#{@order.user.email})"
       expect(page.status_code).to eq 200
@@ -48,7 +47,6 @@ describe 'Admin panel' do
       expect(page.status_code).to eq 200
     end
 
-
     it 'can edit orders quantity in status pending or paid' do
       visit login_url
       fill_in 'email', :with => user.email
@@ -57,12 +55,9 @@ describe 'Admin panel' do
       @order.status = 'paid'
       @order.save!
       visit admin_order_url(@order.id)
-      # expect(page.body).to have_content "#{@order.status}33"
       fill_in 'quantity_1', :with => '99'
       click_on 'Update'
       page.should have_content @order.order_items.find('1').item.price * 99  
     end
-
-
   end
 end
