@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe 'Cart::AddItem' do
   it 'adds the item, with a quantity of 1, when the item is not in the cart' do
     cart = Cart.create

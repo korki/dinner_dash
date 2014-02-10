@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   include ItemsHelper
 
   def admin_user
-    if logged_in? && current_user.admin?  
+    if logged_in? && current_user.admin?
       false
     end
   end
@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.save
-    
+
     if @item.errors.blank?
       redirect_to item_path(@item), flash: {error: "Item '#{@item.name}' Saved!" }
     else
@@ -48,7 +48,7 @@ class ItemsController < ApplicationController
     @item.update(item_params)
     flash.notice = "Item '#{@item.name}' Updated!"
     redirect_to item_path(@item)
-  end  
+  end
 
   def destroy
     @item = Item.find(params[:id])

@@ -1,14 +1,14 @@
 module Admin
   class CategoriesController < ApplicationController
-  before_filter :require_login
-  include CategoriesHelper
+    before_filter :require_login
+    include CategoriesHelper
 
     def index
       @categories = Category.all
     end
 
     def new
-      @category = Category.new  
+      @category = Category.new
     end
 
     def create
@@ -27,7 +27,7 @@ module Admin
 
       flash.notice = "Category '#{@category.name}' Updated!"
       redirect_to admin_categories_path()
-    end  
+    end
 
     def destroy
       @category = Category.find(params[:id])

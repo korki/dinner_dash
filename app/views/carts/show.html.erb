@@ -19,7 +19,7 @@
           <%= button_to "+", add_item_cart_path(item[:id]) %>
         </td>
         <td><%= item[:id] %></td>
-        <td><%= item[:name] %></td> 
+        <td><%= item[:name] %></td>
         <td><%= button_to "Remove", remove_item_cart_path(item[:id]) %></td>
       </tr>
     <% end %>
