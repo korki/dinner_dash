@@ -13,7 +13,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 module SpecHelpers
-  def i_am_logged_in_as(user)
+  def current_user_is(user)
     ApplicationController.any_instance
                          .stub(:current_user)
                          .and_return(user)

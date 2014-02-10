@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Admin panel' do
 
-  before(:each) { i_am_logged_in_as user }
+  before(:each) { current_user_is user }
 
   let(:order) { Order.first }
 
