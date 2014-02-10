@@ -30,8 +30,11 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </div>
+  <div class="field">
+    <%= f.label :role %><br />
+    <%= f.text_field :role %>
+  </div>
   <div class="actions">
-    <!-- <%= f.submit %> -->
-    <%=button_tag 'submit', :name => f.submit%>
+    <%= f.submit %>
   </div>
 <% end %>
