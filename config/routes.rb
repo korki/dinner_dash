@@ -19,7 +19,7 @@ DinnerDash::Application.routes.draw do
 
   resources :items  
   get 'admin/items' => 'items#admin_index'
-  get 'admin' => 'orders#admin_index'
+  get 'admin' => 'admin/orders#index'
   get 'admin/orders' => 'admin/orders#index',   as: :admin_orders
   get 'admin/order/:id' => 'admin/orders#show', as: :admin_order
   post 'admin/order/:id' => 'admin/orders#update', as: :admin_order_edit
