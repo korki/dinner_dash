@@ -30,7 +30,12 @@ class ItemsController < ApplicationController
     if @item.errors.blank?
       redirect_to item_path(@item), flash: {error: "Item '#{@item.name}' Saved!" }
     else
-      redirect_to new_item_path(@item), flash: { error: "Item was invalid!" }
+      err_msg = ''
+      @item.errors.each do |key, msg|
+        key = key.capitalize
+        err_msg +=  "#{key} " + msg + ", \n"
+      end
+      redirect_to new_item_path(@item), flash: { error: "Item was invalid! " + err_msg }
     end
   end
 
