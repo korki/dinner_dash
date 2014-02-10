@@ -15,9 +15,10 @@ DinnerDash::Application.routes.draw do
   post 'cart/item/remove/:item_id' => 'carts#remove', as: :remove_item_cart
   post 'cart/checkout/' => 'carts#checkout', as: :checkout
 
-  resources :orders
+  resources :orders, only: [:index, :show]
 
   resources :items  
+
   get 'admin/items' => 'items#admin_index'
   get 'admin' => 'admin/orders#index'
   get 'admin/orders' => 'admin/orders#index',   as: :admin_orders
@@ -26,18 +27,14 @@ DinnerDash::Application.routes.draw do
 
   get 'admin/order/:id' => 'order#admin_remove_item', as: :remove_item 
   
-  get 'admin/order/:id/:status' => 'orders#admin_status_change', as: :status_change
-  get 'admin/orders/:status' => 'orders#admin_status_filter', as: :status_filter
+  get 'admin/order/:id/:status' => 'admin/orders#status_change', as: :status_change
+  get 'admin/orders/:status' => 'admin/orders#status_filter', as: :status_filter
 
 
   resources :users
   resources :user_sessions, only: [ :new, :create, :destroy ]
   get 'login'  => 'user_sessions#new'
   get 'logout' => 'user_sessions#destroy'
-
-  get 'admin' => 'orders#admin_index'
-  get 'admin/orders' => 'orders#admin_index'
-
 
   root 'items#index'
 

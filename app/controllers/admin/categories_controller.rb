@@ -1,5 +1,6 @@
 module Admin
   class CategoriesController < ApplicationController
+  before_filter :require_login
   include CategoriesHelper
 
     def index

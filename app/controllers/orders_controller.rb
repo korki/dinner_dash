@@ -1,33 +1,12 @@
 class OrdersController < ApplicationController
+  before_filter :require_login
 
   def index
-    @orders = Order.where(user_id: 1)#current_user.id)
+    @orders = Order.where(user_id: current_user.id)
     render 'index.html.erb'
   end
 
   def show
     @order = Order.find(params[:id])
-  end
-
- 
-
-  def admin_status_filter
-    @orders = Order.where('status = ?', params[:status])
-    orders_counts
-    render 'admin/orders/index.html.erb'
-  end
-
-  def admin_status_change
-    order = Order.find(params[:id])
-    order.status = params[:status]
-    order.save!
-    redirect_to order_path(order)
-  end
-
-
-  private 
-
-  def orders_counts
-    @orders_counts = Order.group('status').count
   end
 end
