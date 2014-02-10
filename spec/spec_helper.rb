@@ -12,7 +12,16 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
+module SpecHelpers
+  def i_am_logged_in_as(user)
+    ApplicationController.any_instance
+                         .stub(:current_user)
+                         .and_return(user)
+  end
+end
+
 RSpec.configure do |config|
+  config.include SpecHelpers
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
