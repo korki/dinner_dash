@@ -1,5 +1,6 @@
 
 require 'cart/add_item'
+require 'cart/create_cart'
 require 'order/add_item'
 require 'order/create_from_cart'
 
@@ -7,8 +8,8 @@ class CartsController < ApplicationController
   before_action :set_cart
 
   def show
-    puts @cart.items.inspect
-    puts @cart.cart_items.inspect
+    # puts @cart.items.inspect
+    # puts @cart.cart_items.inspect
     @cart_view = @cart.cart_items.map do |cart_item|
       cart_view_item = {}
       cart_view_item = {:name => cart_item.item.name, :id => cart_item.item.id, :quantity => cart_item.quantity}
@@ -29,15 +30,31 @@ class CartsController < ApplicationController
   end
 
   def checkout 
-    @cart = Cart.find(1)
     @order = Order::CreateFromCart.call @cart
     @cart.destroy
     redirect_to orders_path
   end
 
   def set_cart 
-    @cart = Cart.find(1)
-    puts @cart.cart_items.to_a.inspect
+    # get cart from current user
+    # create cart if user has no cart
+
+    if logged_in?
+      @cart = Cart.where(user_id: current_user.id).first
+      if @cart.nil?
+        @cart = Cart::CreateCart.call(current_user.id,nil)
+      end      
+    else
+      @cart = Cart.where(session_id: request.session_options[:id]).first
+      if @cart.nil?
+        @cart = Cart::CreateCart.call(nil,request.session_options[:id])
+        binding.pry
+      end   
+    end
+
+    
+
+    # puts @cart.cart_items.to_a.inspect
   end
 
 end

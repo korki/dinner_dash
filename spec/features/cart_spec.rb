@@ -33,6 +33,9 @@ describe 'Order::AddItem' do
 end
 
 describe 'Checkout' do
+
+  specify 'A user without login cant see the checkout button'
+  
   it 'add item with correct quantity to order' do
     cart = Cart.create
     item = Item.create(:id => 4)
@@ -40,6 +43,14 @@ describe 'Checkout' do
     order = Order::CreateFromCart.call cart
     expect(order.order_items.first.quantity).to eq cart.cart_items.first.quantity
   end
+end
+
+describe 'Cart is Saved' do
+
+  specify 'a user (with login) can add items to the cart, and see them later after login'
+  specify 'a user (without login) can add items to the cart, and see them later after login'
+  specify 'a user (without login) can add items to the cart, and they will keep there after login (what happen if it has items before?)'
+
 end
 
 describe 'viewing the cart' do
@@ -58,7 +69,7 @@ describe 'viewing the cart' do
     ApplicationController.any_instance.stub(:current_user).and_return(user)
   end
 
-  specify 'A user sees their cart items (possibly other stuff like total?)' do
+  specify 'A user sees their cart items' do
     pending 'need to connect user with cart'
     current_user_is user
     visit cart_path(cart) # hits /cart
@@ -66,8 +77,7 @@ describe 'viewing the cart' do
     expect(page.body).to_not include item_NOT_in_cart.name
   end
 
-  # I would put this in spec/models/user.rb
-  it 'cart start empty' do
-    # expect(User.new.cart.items.count).to eq 0
-  end
+  specify 'A user sees the total amount in their cart'
+  specify 'When no items in the cart, a user sees the total amount as zero'
+  specify 'A user with no items in the cart, should not see the checkout button'
 end
