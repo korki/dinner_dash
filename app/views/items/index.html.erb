@@ -11,6 +11,7 @@
         <div><h4><%= link_to item.name, item_path(item), class: 'item_name', id: "item_#{item.id}" %></h4></div>
         <div>£<%= item.price %>.00</div>
         <div><%= item.quantity %> in stock</div>
+        <%= button_to "ADD TO CART", add_item_cart_path(item[:id]) %>
       </div>
     <% end %>
   </div>
