@@ -4,7 +4,7 @@ describe Category do
   let(:test_cat1) { Category.new({
     id: '1',
     name: 'Starters',
-   })  
+   })
   }
 
   it 'displays main categories list and single category' do
@@ -19,7 +19,7 @@ describe Category do
 
   it "adds a new category" do
     user = User.new role: 1
-    ApplicationController.any_instance.stub(:current_user).and_return(user)    
+    current_user_is user
     visit new_category_path
     fill_in 'category[name]', :with => 'test_category'
     click_on 'Create Category'
