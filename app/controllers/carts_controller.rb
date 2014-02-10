@@ -48,7 +48,7 @@ class CartsController < ApplicationController
       @cart = Cart.where(session_id: request.session_options[:id]).first
       if @cart.nil?
         @cart = Cart::CreateCart.call(nil,request.session_options[:id])
-        binding.pry
+        # binding.pry
       end   
     end
 
