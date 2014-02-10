@@ -2,10 +2,6 @@
 
 <p>Status: <%= @order.status %></p>
 
-<% if logged_in? && current_user.admin? %>
-<%= render partial: 'admin/orders/user_details' %>
-<% end %>
-
 <p>Items:</p>
 <ul>
   <% 
